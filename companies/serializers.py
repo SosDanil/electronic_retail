@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from companies.models import Company, Product
+from companies.validators import DontUpdateDebtValidator
 
 
 class CompanySerializer(serializers.ModelSerializer):
@@ -14,7 +15,10 @@ class CompanyUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Company
-        exclude = ['debt',]
+        fields = '__all__'
+        validators = [
+            DontUpdateDebtValidator(field='debt'),
+        ]
 
 
 class ProductSerializer(serializers.ModelSerializer):

@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.filters import SearchFilter
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 
 from companies.models import Company, Product
@@ -13,6 +14,8 @@ class CompanyCreateAPIView(CreateAPIView):
 class CompanyListAPIView(ListAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    filter_backends = [SearchFilter,]
+    search_fields = ['country',]
 
 
 class CompanyRetrieveAPIView(RetrieveAPIView):
