@@ -46,6 +46,7 @@ class Company(models.Model):
     class Meta:
         verbose_name = 'компания'
         verbose_name_plural = 'компании'
+        ordering = ('name', 'country')
 
 
 class Product(models.Model):
@@ -63,3 +64,4 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
+        ordering = ('name',)
