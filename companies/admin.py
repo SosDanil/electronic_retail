@@ -4,7 +4,7 @@ from django_admin_relation_links import AdminChangeLinksMixin
 
 
 @admin.action(description="Обнулить задолженность перед поставщиком")
-def clear_debt(modeladmin, request, queryset):
+def clear_debt(queryset):
     queryset.update(debt=None)
 
 
