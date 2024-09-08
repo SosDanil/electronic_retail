@@ -1,7 +1,8 @@
+from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 
-from companies.models import Company
-from companies.serializers import CompanySerializer, CompanyUpdateSerializer
+from companies.models import Company, Product
+from companies.serializers import CompanySerializer, CompanyUpdateSerializer, ProductSerializer
 
 
 class CompanyCreateAPIView(CreateAPIView):
@@ -26,3 +27,8 @@ class CompanyUpdateAPIView(UpdateAPIView):
 
 class CompanyDestroyAPIView(DestroyAPIView):
     queryset = Company.objects.all()
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer

@@ -52,7 +52,7 @@ class Product(models.Model):
 
     name = models.CharField(max_length=400, verbose_name='название')
     model = models.CharField(max_length=150, verbose_name='модель продукта', blank=True, null=True)
-    release_date = models.DateField(verbose_name='дата выхода на рынок')
+    release_date = models.DateField(verbose_name='дата выхода на рынок', blank=True, null=True)
 
     company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name='компания')
 
