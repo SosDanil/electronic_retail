@@ -34,7 +34,8 @@ class Company(models.Model):
     type = models.CharField(max_length=50, verbose_name='тип компании', choices=COMPANY_TYPE)
     level = models.CharField(max_length=10, verbose_name='уровень иерархии', choices=LEVELS)
 
-    supplier = models.ForeignKey('self', verbose_name='поставщик', blank=True, null=True, on_delete=models.SET_NULL)
+    supplier = models.ForeignKey('self', verbose_name='поставщик', blank=True, null=True, on_delete=models.SET_NULL,
+                                 related_name='company_supplier')
     debt = models.DecimalField(decimal_places=2, max_digits=100, verbose_name='долг перед поставщиком (в рублях)',
                                blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')
@@ -54,7 +55,7 @@ class Product(models.Model):
     model = models.CharField(max_length=150, verbose_name='модель продукта', blank=True, null=True)
     release_date = models.DateField(verbose_name='дата выхода на рынок', blank=True, null=True)
 
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name='компания')
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name='компания', related_name='product')
 
     def __str__(self):
         return f"{self.name} от компании {self.company}"
