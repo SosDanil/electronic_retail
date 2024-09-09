@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from companies.models import Company, Product
-from companies.validators import DontUpdateDebtValidator
+from companies.validators import DontUpdateDebtValidator, WrongLevelValidator
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -29,3 +29,11 @@ class CompanyUpdateSerializer(serializers.ModelSerializer):
         ]
 
 
+class CompanyCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Company
+        fields = '__all__'
+        validators = [
+            WrongLevelValidator(field1='type', field2='level', supplier='supplier')
+        ]

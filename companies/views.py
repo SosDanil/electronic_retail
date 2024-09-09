@@ -3,12 +3,12 @@ from rest_framework.filters import SearchFilter
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 
 from companies.models import Company, Product
-from companies.serializers import CompanySerializer, CompanyUpdateSerializer, ProductSerializer
+from companies.serializers import CompanySerializer, CompanyUpdateSerializer, ProductSerializer, CompanyCreateSerializer
 
 
 class CompanyCreateAPIView(CreateAPIView):
     queryset = Company.objects.all()
-    serializer_class = CompanySerializer
+    serializer_class = CompanyCreateSerializer
 
 
 class CompanyListAPIView(ListAPIView):
